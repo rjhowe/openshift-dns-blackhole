@@ -12,4 +12,4 @@ RUN dnf -y update && dnf clean all && \
     dnf install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS
              
-ENTRYPOINT dnsmasq --no-daemon --server=/#/ --log-facility=- --log-queries
+ENTRYPOINT dnsmasq --no-daemon

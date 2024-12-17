@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: dnsmasq
-        image: quay.io/rjhowe/dnsmasq:latest 
+        image: quay.io/rjhowe/dnsmasq:latest
+        command: ["/usr/sbin/dnsmasq","--no-daemon"]
         ports:
         - containerPort: 53
         resources:
@@ -26,6 +27,13 @@ spec:
           limits:
             cpu: "1"
             memory: 1Gi
+        volumeMounts:
+        - name: dnsmasq-config
+          mountPath: /etc/dnsmasq.d/
+      volumes:
+      - name: dnsmasq-config
+        configMap:
+          name: dnsmasq-config
 ---
 apiVersion: v1
 kind: Service
@@ -40,3 +48,13 @@ spec:
       targetPort: 53
       nodePort: 30053
       protocol: UDP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dnsmasq-config
+data:
+  blackhole.config: |
+    server=/#/
+    log-facility=- 
+    log-queries
