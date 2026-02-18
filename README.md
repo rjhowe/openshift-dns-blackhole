@@ -1,7 +1,7 @@
 # openshift-dns-blackhole
 
 
-- Create a DNS Blackhole for bogus queries coming from OpenShift pods for search domains being appended due the ndots settings.
+- Create a DNS Blackhole for bogus queries coming from OpenShift pods for search domains being appended due the ndots settings. Returns NXDOMAIN
 
 1. Pull Repo
 2. Create dnsmasq container
