@@ -55,6 +55,7 @@ metadata:
   name: dnsmasq-config
 data:
   blackhole.config: |
-    server=/#/
+    no-resolv
+    address=/#/
     log-facility=- 
     log-queries
