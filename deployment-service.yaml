@@ -45,7 +45,7 @@ spec:
     app: dnsmasq
   ports:   
     - port: 53
-      targetPort: 53
+      targetPort: 5353
       nodePort: 30053
       protocol: UDP
 ---
@@ -55,6 +55,7 @@ metadata:
   name: dnsmasq-config
 data:
   blackhole.config: |
+    port=5353
     no-resolv
     address=/#/
     log-facility=- 
